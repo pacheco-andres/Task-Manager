@@ -12,17 +12,19 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
-      <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-light') %>
-      <%= link_to('Edit Profile', edit_user_registration_path, class: 'btn btn-light') %>
-      <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar, class: "avatar" %>
+    <div class="frame">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <% if user_signed_in? %>
+        <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'btn btn-light') %>
+        <%= link_to('Edit Profile', edit_user_registration_path, class: 'btn btn-light') %>
+        <% if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar, class: "avatar" %>
+        <% end %>
+      <% else %>
+        <%= link_to('Sign in', new_user_session_path) %>
       <% end %>
-    <% else %>
-      <%= link_to('Sign in', new_user_session_path) %>
-    <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
